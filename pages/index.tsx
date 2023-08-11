@@ -1,9 +1,22 @@
-import React, { FC } from 'react';
-import { useFetchPokemonWithInfinityScroll } from '../hooks/usePokemon';
-import HomePage from '@/components/pages/HomePage';
-import MyBeatLoader from '@/components/UI/molecules/BeatLoader';
-import useFetchNextPage from '../hooks/useFetchNextPage';
-import Container from '@/components/UI/atoms/Container';
+import React, { FC } from "react";
+import { useFetchPokemonWithInfinityScroll } from "../hooks/usePokemon";
+import useFetchNextPage from "../hooks/useFetchNextPage";
+import dynamic from "next/dynamic";
+
+const HomePage = dynamic(() => import("../components/pages/HomePage"), {
+  ssr: true,
+});
+
+const Container = dynamic(() => import("../components/UI/atoms/Container"), {
+  ssr: true,
+});
+
+const MyBeatLoader = dynamic(
+  () => import("../components/UI/molecules/BeatLoader"),
+  {
+    ssr: true,
+  }
+);
 
 const IndexPage: FC = (): JSX.Element => {
   const { data, isSuccess, hasNextPage, fetchNextPage, isInitialLoading } =

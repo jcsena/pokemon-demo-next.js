@@ -1,31 +1,32 @@
-import { FC, useRef, useState } from 'react';
-import Input from '../../atoms/Input';
-import Image from 'next/image';
-import Button from '../../atoms/Button';
-import SearchResults from '../../atoms/SearchResults';
-import useOnClickOutside from '@/hooks/useOnClickOutSide';
-import { styled } from '@/stitches.config';
-import { useRouter } from 'next/router';
+import { FC, useRef, useState } from "react";
+import Image from "next/image";
+import SearchResults from "../../atoms/SearchResults";
+import useOnClickOutside from "@/hooks/useOnClickOutSide";
+import { styled } from "@/stitches.config";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
+const Button = dynamic(() => import("../../atoms/Button"), { ssr: true });
+const Input = dynamic(() => import("../../atoms/Input"), { ssr: true });
 interface Props {
   searchText: string;
   setSearchText: (value: string) => void;
   searchResults: string[];
 }
 
-const StyledSearchBarWrapper = styled('div', {
-  margin: '0 $4',
-  marginTop: 'calc(213px - $sizes$header)',
-  position: 'relative',
-  maxWidth: '629px',
-  borderRadius: '$1',
-  background: '$grey0',
-  '& div': {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: '$4',
-    gap: '$3',
-    borderRadius: '$1',
+const StyledSearchBarWrapper = styled("div", {
+  margin: "0 $4",
+  marginTop: "calc(213px - $sizes$header)",
+  position: "relative",
+  maxWidth: "629px",
+  borderRadius: "$1",
+  background: "$grey0",
+  "& div": {
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: "$4",
+    gap: "$3",
+    borderRadius: "$1",
   },
 });
 
