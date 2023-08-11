@@ -4,31 +4,35 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'img.pokemondb.net',
-        port: '',
-        pathname: '/artwork/large/**',
+        protocol: "https",
+        hostname: "img.pokemondb.net",
+        port: "",
+        pathname: "/artwork/large/**",
       },
       {
-        protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
-        port: '',
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
         pathname:
-          '/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/**',
+          "/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/**",
       },
       {
-        protocol: 'https',
-        hostname: 'pokeapi.co',
-        port: '',
-        pathname: '/api/v2/pokemon/**',
+        protocol: "https",
+        hostname: "pokeapi.co",
+        port: "",
+        pathname: "/api/v2/pokemon/**",
       },
     ],
   },
   experimental: {
     fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['latin'] } },
+      { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
 };
 
-module.exports = nextConfig;
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer(nextConfig);
